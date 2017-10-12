@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>帮你挑个女朋友</title>
+    <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=0">
+    <style>
+        body,p{
+            margin:0;padding:0;
+            -webkit-tap-highlight-color: rgba(0,0,0,0);
+        }
+        .back{
+            position: relative;
+            width:100%;
+        }
+        .explain{
+            position: absolute;
+            text-align: center;
+            top:45%;
+            margin:0 auto;
+            left:0;
+            right:0;
+        }
+        .title{
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+        .btn{
+            border-radius: 15px;
+            border:1px solid #808080;
+            font-size: 12px;
+            text-decoration: none;
+            display: inline-block;
+            color:#808080;
+            position: relative;
+            z-index: 1000;
+            height:25px;
+            line-height: 25px;
+            width:100px;
+        }
+        .text{
+            font-size: 16px;
+            color: #ecad4b;
+            margin-bottom: 4px;
+            font-weight: bold;
+            display: none;
+        }
+        .abs{
+            position: absolute;
+            color:#a5a5a5;
+            font-weight: bold;
+            opacity:1;
+
+            animation:mymove 1s 1 forwards;
+            -moz-animation:mymove 1s 1 forwards; /* Firefox */
+            -webkit-animation:mymove 1s 1 forwards; /* Safari and Chrome */
+            -o-animation:mymove 1s 1 forwards; /* Opera */
+        }
+
+        @keyframes mymove
+        {
+            0% {opacity:0;}
+            30% {opacity:1;}
+            100% {opacity:0;}
+        }
+
+        @-moz-keyframes mymove /* Firefox */
+        {
+            0% {opacity:0;}
+            30% {opacity:1;}
+            100% {opacity:0;}
+        }
+
+        @-webkit-keyframes mymove /* Safari and Chrome */
+        {
+            0% {opacity:0;}
+            30% {opacity:1;}
+            100% {opacity:0;}
+        }
+
+        @-o-keyframes mymove /* Opera */
+        {
+            0% {opacity:0;}
+            30% {opacity:1;}
+            100% {opacity:0;}
+        }
+    </style>
+</head>
+<body>
+<div class="back">
+    <div class="explain">
+        <p class="title">女朋友上哪找，上哪找？</p>
+        <span class="text">充气的</span>
+        <a href="javascript:void(0)" class="btn" onclick="move()" data-value="0">开始</a>
+    </div>
+    <div class="a">
+
+    </div>
+</div>
+</body>
+<script>
+    var option = ["上淘宝","买话费","去夜店","菜市场","路边捡","去搭讪","漂流瓶","扫一扫","幼儿园","下陌陌","送火箭","送游艇","成人店","去相亲","去入赘","在家等","去泰国","先掰直","搜附近","英雄救美","去壁咚","去强上","去学校","山东蓝翔","陈晨","办公室","看左手","买只猫"];
+    $(function(){
+        var wH = document.documentElement.clientHeight ;
+        $(".back").css("height",wH +"px")
+    })
+
+    var stop;
+    function move(){
+        if($(".btn").attr("data-value") <= 2){
+            $(".a").empty();
+            var num = 0;
+            function a(){
+                stop = setTimeout(a,30);
+                num += 1;
+                var fontSize = Math.ceil(Math.random()*4)+12;
+                var width = document.documentElement.clientWidth ;
+                var height = document.documentElement.clientHeight ;
+                var left = Math.ceil(Math.random()*(width-80))+40;
+                var top = Math.ceil(Math.random()*(height-80))+40;
+                var optionName = Math.floor(Math.random()*option.length);
+                $(".a").append("<p class='abs abs"+num+"'>"+option[optionName]+"</p>")
+                $(".text").css("display","block").text(option[optionName])
+                $("."+"abs"+num).css({"fontSize":fontSize,"left":left,"top":top})
+                console.log(optionName)
+            }
+            $(".btn").text("停止").removeAttr("onclick").attr("onclick","end()")
+            a()
+        }else{
+            alert("还不满足？退群吧")
+        }
+
+    }
+
+    function end(){
+        $(".btn").attr("data-value",parseInt($(".btn").attr("data-value"))+1)
+        console.log("!")
+        clearTimeout(stop);
+        $(".btn").text("不满意？换一个").removeAttr("onclick").attr("onclick","move()")
+    }
+</script>
+</html>
