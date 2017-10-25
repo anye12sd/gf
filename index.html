@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>帮你挑个女朋友</title>
     <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+    <script src="//cdn.bootcss.com/layer/3.0.3/layer.min.js"></script>
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=0">
     <style>
         body,p{
@@ -91,7 +92,7 @@
 <div class="back">
     <div class="explain">
         <p class="title">女朋友上哪找，上哪找？</p>
-        <span class="text">充气的</span>
+        <span class="text"></span>
         <a href="javascript:void(0)" class="btn" onclick="move()" data-value="0">开始</a>
     </div>
     <div class="a">
@@ -100,13 +101,41 @@
 </div>
 </body>
 <script>
-    var option = ["上淘宝","买话费","去夜店","菜市场","路边捡","去搭讪","漂流瓶","扫一扫","幼儿园","下陌陌","送火箭","送游艇","成人店","去相亲","去入赘","在家等","去泰国","先掰直","搜附近","英雄救美","去壁咚","去强上","去学校","山东蓝翔","陈晨","办公室","看左手","买只猫"];
+    var option = ["上淘宝","充话费","去夜店","菜市场","路边捡","去搭讪","漂流瓶","扫一扫","幼儿园","用陌陌","送火箭","送游艇","成人店","去相亲","去入赘","在家等","去泰国","先掰直","搜附近","英雄救美","去壁咚","去强上","去学校","山东蓝翔","陈晨","办公室","看左手","买只猫"];
+    var explain = ["只要998，就能让你爽到无法呼吸"
+        ,"老板不要送手机了，送一个女朋友吧"
+        ,"小心诈尸"
+        ,"买菜大妈亲自坐镇，男生买菜更有魅力哦"
+        ,"大包小包，垃圾桶翻一翻"
+        ,"可能会得到一耳光，可能你会拥有她十年哦"
+        ,"异地奔现处cp，正太御姐可萝莉"
+        ,"扫到998大礼包哦"
+        ,"三年血赚，死刑不亏"
+        ,"小心酒托骗感情哦"
+        ,"送火箭即可得到主播微信哦"
+        ,"送游艇即可得到主播微信哦"
+        ,"emmm，成人店好像没有998，但是只要298！"
+        ,"小姑娘不喜欢你，说不定闺蜜团看上你啦"
+        ,"十八年后还是一条好汉！"
+        ,"“阿姨你有没有看到一只狗？”，“沙发上那只算吗”"
+        ,"胸大还不算，针尖对麦芒"
+        ,"掰不直就看看有帮助的葵花宝典吧"
+        ,"附近汉子多，说不定就成了"
+        ,"先找个能为朋友插两刀的兄弟"
+        ,"温柔点不然把墙推翻了很尴尬"
+        ,"小心不要被反强上"
+        ,"等等16年，说不定能赢娶到下一个昆凌哦~"
+        ,"掘削机のどの家が强いで すか？"
+        ,"你们什么都没看见什么都没看见"
+        ,"小心被老板抓到哦"
+        ,"还有人默默地看着左脚的？"
+        ,"空调wifi吸猫还不是美滋滋"];
     $(function(){
         var wH = document.documentElement.clientHeight ;
         $(".back").css("height",wH +"px")
     })
 
-    var stop;
+    var stop,optionIndex;
     function move(){
         if($(".btn").attr("data-value") <= 2){
             $(".a").empty();
@@ -119,11 +148,10 @@
                 var height = document.documentElement.clientHeight ;
                 var left = Math.ceil(Math.random()*(width-80))+40;
                 var top = Math.ceil(Math.random()*(height-80))+40;
-                var optionName = Math.floor(Math.random()*option.length);
-                $(".a").append("<p class='abs abs"+num+"'>"+option[optionName]+"</p>")
-                $(".text").css("display","block").text(option[optionName])
+                optionIndex = Math.floor(Math.random()*option.length);
+                $(".a").append("<p class='abs abs"+num+"'>"+option[optionIndex]+"</p>")
+                $(".text").css("display","block").text(option[optionIndex])
                 $("."+"abs"+num).css({"fontSize":fontSize,"left":left,"top":top})
-                console.log(optionName)
             }
             $(".btn").text("停止").removeAttr("onclick").attr("onclick","end()")
             a()
@@ -135,6 +163,11 @@
 
     function end(){
         $(".btn").attr("data-value",parseInt($(".btn").attr("data-value"))+1)
+        layer.msg(explain[optionIndex], {
+            anim: 0,
+            offset:"40%",
+            time: 2000
+        });
         console.log("!")
         clearTimeout(stop);
         $(".btn").text("不满意？换一个").removeAttr("onclick").attr("onclick","move()")
