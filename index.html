@@ -92,7 +92,7 @@
 <body>
 <div class="back">
     <div class="explain">
-        <p class="title">女朋友上哪找，上哪？</p>
+        <p class="title">中饭吃什么？</p>
         <span class="text"></span>
         <a href="javascript:void(0)" class="btn" onclick="move()" data-value="0">开始</a>
     </div>
@@ -106,7 +106,8 @@
 	$(function(){
 		eruda.init();
 	})
-    var option = ["上淘宝","充话费","去夜店","菜市场","路边捡","去搭讪","漂流瓶","扫一扫","幼儿园","用陌陌","送火箭","送游艇","成人店","去相亲","去入赘","在家等","去泰国","先掰直","搜附近","英雄救美","去壁咚","去强上","去学校","山东蓝翔","陈晨","办公室","看左手","买只猫"];
+	var option = ["麻辣烫","海底捞","麻辣香锅","肯打鸡","沙县大酒店","兰州拉面","过桥米线","家乡の料理","黄焖鸡","生煎","锅贴","方便面","喝粥","减肥","厕所觅食","牛排","牛肉汤"]
+    /** var option = ["上淘宝","充话费","去夜店","菜市场","路边捡","去搭讪","漂流瓶","扫一扫","幼儿园","用陌陌","送火箭","送游艇","成人店","去相亲","去入赘","在家等","去泰国","先掰直","搜附近","英雄救美","去壁咚","去强上","去学校","山东蓝翔","陈晨","办公室","看左手","买只猫"];
     var explain = ["只要998，就能让你爽到无法呼吸"
         ,"老板不要送手机了，送一个女朋友吧"
         ,"小心诈尸"
@@ -135,6 +136,7 @@
         ,"小心被老板抓到哦"
         ,"还有人默默地看着左脚的？"
         ,"空调wifi吸猫还不是美滋滋"];
+		**/
     $(function(){
         var wH = document.documentElement.clientHeight ;
         $(".back").css("height",wH +"px")
@@ -168,7 +170,7 @@
 
     function end(){
         $(".btn").attr("data-value",parseInt($(".btn").attr("data-value"))+1)
-        layer.msg(explain[optionIndex], {
+        layer.msg(option[optionIndex], {
             anim: 0,
             offset:"40%",
             time: 2000
